@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="row">
+      <div class="col-12"><center>
+        <p id="notice"><%= notice %></p>
+
+        <h1>Shiloh Procedures<% if @admin %> - ADMIN  <% end %> </h1>
+        <% if @admin %>
+          <br>
+          <%= link_to "New Service", "/admin/procedures/new" %><br><div class="row border border-primary"></div>
+          <br>
+        <% end %>
+      </div>
+    </div>
+
+
+    <% @procedures.each do |procedure| %>
+
+      <div class="row">
+        <div class="col-12"><center>
+          <% if @admin %>
+            <%= link_to procedure.name + " - " + procedure.price.to_s, "/admin/procedures/#{procedure.id}/edit" %>
+          <% else %>
+                <%= link_to procedure.name + " - " + procedure.price.to_s, "/#{@active_site}/procedures/#{procedure.id}" %>
+          <% end %>
+          </center><br>
+        </div>
+      </div>
+
+        <div class="row">
+          <% if procedure.picture.attached? %>
+            <div class="col-4">
+              <image class="img-fluid member_image" src="<%=(url_for(procedure.picture)) %>">
+            </div>
+          <% end %>
+            <div class="col">
+              <%= procedure.description.html_safe %>
+            </div>
+          </div>
+        <% if @admin %>
+        <div class="row">
+          <div class="col-12"><%= link_to 'Delete ' + procedure.name, "procedures/" + procedure.id.to_s, method: :delete, data: {confirm: 'Are you sure you want to delete ' + procedure.name + '?' } %>
+          </div>
+        </div>
+          <% end %><br>
+          <div class="row border border-primary"></div>
+          <br>
+
+
+    <% end %>
+</div>

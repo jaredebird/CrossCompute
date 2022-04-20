@@ -1,0 +1,74 @@
+
+<%= form_with model: [:admin, @page] do |form| %>
+  <% if page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+        <% page.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <div class="container">
+      <div class="row  border justify-content-center">
+        <div class="col-5">
+        <% if page.top_picture.attached? %>
+          <br><img style="width:100%" src="<%=(url_for(page.top_picture)) %>" /><br><br>
+              <label class="inline">Remove Top Picture &nbsp; &nbsp; <%= check_box_tag "deleteTopPicture" %></label>
+        <% end %>
+        <label class="inline">Choose New Top Picture &nbsp;
+        <%= form.file_field :top_picture %></label>
+        </div>
+      </div>
+      <div class="row border align-items-end">
+        <div class="col border justify-content-center">
+          <% if page.left_picture.attached? %>
+            <br><img style="max-width:400px;width:100%" src="<%=(url_for(page.left_picture)) %>" /><br><br>
+            <label class="inline">Remove Left Picture &nbsp; &nbsp;<%= check_box_tag "deleteLeftPicture" %></label>
+          <% end %>
+          <label class="inline">Choose New Left Picture &nbsp; &nbsp; <%= form.file_field :left_picture %></label>
+        </div>
+        <div class="col">
+          <%= form.text_area :layout, :class => "tinymce" %>
+              <%= tinymce %>
+        </div>
+        <div class="col border justify-content-center">
+          <% if page.right_picture.attached? %>
+            <br><img style="max-width:400px;width:100%" src="<%=(url_for(page.right_picture)) %>" /><br><br>
+            <label class="inline">Remove Right Picture &nbsp; &nbsp;<%= check_box_tag "deleteRightPicture" %></label>
+          <% end %>
+          <label class="inline">Choose New Right Picture &nbsp; &nbsp; <%= form.file_field :right_picture %></label>
+        </div>
+      </div>
+      <div class="row border justify-content-center">
+        <div class="col-5">
+          <% if page.bottom_picture.attached? %>
+            <br><img style="max-width:400px;width:100%" src="<%=(url_for(page.bottom_picture)) %>" /><br><br>
+            <label class="inline">Remove Bottom Picture &nbsp; &nbsp;<%= check_box_tag "deleteBottomPicture" %></label>
+          <% end %>
+          <label class="inline">Choose New Bottom Picture &nbsp; &nbsp; <%= form.file_field :bottom_picture %></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.select :order, (1..200), :selected => page.order  %>
+  </div>
+
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

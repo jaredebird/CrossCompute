@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="row justify-content-center">
+  <strong><%= @page.title %></strong>
+
+<% if @page.top_picture.attached? %>
+  <div class="row justify-content-center">
+    <image style="width:100%" src="<%=(url_for(@page.top_picture)) %>" >
+  </div>
+<% end %>
+  <div class="row justify-content-center">
+
+    <% if @page.left_picture.attached? %>
+      <div class="col">
+        <image style="width:100%" src="<%=(url_for(@page.left_picture)) %>" >
+      </div>
+    <% end %>
+    <div class="col justify-content-center">
+      <%= @page.layout.html_safe %>
+    </div>
+    <% if @page.right_picture.attached? %>
+      <div class="col">
+        <image style="width:100%" src="<%=(url_for(@page.right_picture)) %>" >
+      </div>
+    <% end %>
+  </div>
+  <% if @page.bottom_picture.attached? %>
+    <div class="row justify-content-center">
+      <image style="width:100%" src="<%=(url_for(@page.bottom_picture)) %>" >
+    </div>
+  <% end %>
+</div>

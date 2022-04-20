@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="row">
+      <div class="col-12"><center>
+        <p id="notice"><%= notice %></p>
+
+        <h1>Shiloh Team Members<% if @admin %> - ADMIN  <% end %> </h1>
+        <% if @admin %>
+          <br>
+          <%= link_to "New Team Member", "/admin/members/new" %><br><div class="row border border-primary"></div>
+          <br>
+        <% end %>
+      </div>
+    </div>
+
+
+<% @members.each do |member| %>
+
+  <div class="row">
+    <div class="col-12"><center>
+      <% if @admin %>
+        <%= link_to member.name + " - " + member.title, "/admin/members/#{member.id}/edit" %>
+      <% else %>
+
+            <%= link_to member.name + " - " + member.title,"/#{@active_site}/members/#{member.id}" %>
+
+      <% end %>
+      </center><br>
+    </div>
+  </div>
+
+    <div class="row">
+      <% if member.picture.attached? %>
+        <div class="col-4">
+          <image class="img-fluid member_image" src="<%=(url_for(member.picture)) %>">
+        </div>
+      <% end %>
+        <div class="col">
+          <%= member.description.html_safe %>
+        </div>
+      </div>
+    <% if @admin %>
+    <div class="row">
+      <div class="col-12"><%= link_to 'Delete ' + member.name, "members/" + member.id.to_s, method: :delete, data: {confirm: 'Are you sure you want to delete ' + member.name + '?' } %>
+      </div>
+    </div>
+      <% end %><br><div class="row border border-primary"></div><br>
+<% end %>
+</div>
+<br>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <%= stylesheet_link_tag "application" %>
+  <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> -->
+    <title>ADMIN SECTION</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= tinymce_assets %>
+    <script type="text/javascript" src="/assets/tinymce.js"></script>
+
+
+  </head>
+
+  <body>
+
+    <% if notice %>
+          <%= notice %>
+<% end %>
+
+<% if alert %>
+          <%= alert %>
+<% end %>
+
+
+<div style="width: 1000px">
+
+    <div class="h2">ADMIN SECTION - Shiloh Medical Services &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b><%= link_to 'Home', root_path %></b></div>
+</div>
+<div>
+<% if current_user %>
+  <!-- current_user will return true if a user is logged in -->
+  <%= "Logged in as #{current_user.email}" %> | <%= link_to 'Home', root_path %> | <%= link_to 'Log Out', logout_path, method: :delete %>
+<% else %>
+  <!-- not logged in -->
+  <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %>
+<% end %>
+</div>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/admin">Home</a>
+        <a class="navbar-brand" href="/admin/members">Team</a>
+        <a class="navbar-brand" href="/admin/procedures">Services</a>
+        <a class="navbar-brand" href="/admin/pages">Pages</a>
+
+      </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/hours">Hours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/procedures">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  href="/members">Team</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<div class="main" style="width: 1000px">
+  <%= yield %>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Layout:</strong>
+  <%= @hour.layout %>
+</p>
+
+<p>
+  <strong>Dental:</strong>
+  <%= @hour.dental %>
+</p>
+
+<p>
+  <strong>Medical:</strong>
+  <%= @hour.medical %>
+</p>
+
+<p>
+  <strong>Vision:</strong>
+  <%= @hour.vision %>
+</p>
+
+<%= link_to 'Edit', edit_hour_path(@hour) %> |
+<%= link_to 'Back', hours_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @page.title %>
+</p>
+
+<p>
+  <strong>Layout:</strong>
+  <%= @page.layout.html_safe %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @page.order %>
+</p>
+
+<p>
+  <strong>Dental:</strong>
+  <%= @page.dental %>
+</p>
+
+<p>
+  <strong>Medical:</strong>
+  <%= @page.medical %>
+</p>
+
+<p>
+  <strong>Vision:</strong>
+  <%= @page.vision %>
+</p>
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>

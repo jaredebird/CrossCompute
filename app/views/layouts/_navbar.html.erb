@@ -1,0 +1,13 @@
+<div class="container-fluid bg-dark p-3 overflow-hidden"><div class="row g-6">
+
+  <div class="col"><center><a class="link-light fs-4 text-white" href="/">Home</a></center></div>
+  <% if @admin %>
+    <div class="col"><center><a class="link-light fs-4 text-white" href="/admin/pages">Pages</a></center></div>
+  <% end %>
+
+  <% if @extra_pages != nil %>
+    <% @extra_pages.each do |page| %>
+        <div class="col"><center><a class="link-light fs-4 text-white" href="/pages<%= "/#{page.id}" %>"><%= page.title %></a></center></div>
+    <% end %>
+  <% end %>
+</div></div>

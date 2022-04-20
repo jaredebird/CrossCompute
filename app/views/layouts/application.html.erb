@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <% if @admin %>
+      <title>ADMIN SECTION - Jared E Bird</title>
+    <% else %>
+      <title>Jared E Bird</title>
+    <% end %>
+    <%= stylesheet_link_tag "bootstrap_config", "application" %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= tinymce_assets %>
+    <script type="text/javascript" src="/assets/tinymce.js"></script>
+
+    <script>
+      tinymce.init({
+        selector: '.tinymce',
+        width: 100%,
+      });
+    </script>
+  </head>
+
+  <body>
+    <% if notice %>
+      <%= notice %>
+    <% end %>
+    <% if alert %>
+      <%= alert %>
+    <% end %>
+<div class="container">
+<div class="container px-4 border border-3 border-dark">
+
+
+  <div class="container px-4 border border-3 border-primary"><center><a href="/medical"><%= image_tag("logos/Jared Logo.jpg", :alt => "Jared E Bird", class: "img-fluid") %></a></center></div>
+
+<br>
+    <% if @admin %>
+      <%= link_to 'Home', '/' %>
+    <% else %>
+      <%= link_to 'Admin', '/admin' %>
+    <% end %>
+</div>
+
+
+<% if @admin %>
+  <%= render '/layouts/adminNavbar' %>
+<% else %>
+  <%= render '/layouts/navbar' %>
+<% end %>
+<div class="container px-4 border border-3 border-dark">
+
+
+<div class="main" style="width: 1000px">
+
+  <%= yield %>
+</div>
+</div>
+
+  <%= render '/layouts/footer' %>

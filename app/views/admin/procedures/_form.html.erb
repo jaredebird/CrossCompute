@@ -1,0 +1,67 @@
+
+<%= form_with model: [:admin, @procedure] do |form| %>
+
+  <% if procedure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(procedure.errors.count, "error") %> prohibited this procedure from being saved:</h2>
+
+      <ul>
+        <% procedure.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+
+    <%= form.text_area :description , :class => "tinymce" %>
+
+    <%= tinymce %>
+
+  </div>
+
+  <div class="field">
+    <% if procedure.picture.attached? %>
+          <br><img style="max-width:400px;width:100%" src="<%=(url_for(procedure.picture)) %>" />
+          <br><br>
+          <%= check_box_tag "deletePicture" %>
+          <%= form.label "Remove Picture" %>
+          <br>
+    <% end %>
+    <%= form.label "Choose New Picture" %>
+    <%= form.file_field :picture %>
+  </div>
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.select :order, (1..200), :selected => procedure.order %>
+  </div>
+  <div class="field">
+    <%= form.label :medical %>
+    <%= form.check_box :medical %>
+  </div>
+  <div class="field">
+    <%= form.label :dental %>
+    <%= form.check_box :dental %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+
+
+
+
+
+<% end %>

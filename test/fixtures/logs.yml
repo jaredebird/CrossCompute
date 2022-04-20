@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usernNme: MyString
+  type: 
+  original: MyText
+  new: MyText
+  ip: MyString
+
+two:
+  usernNme: MyString
+  type: 
+  original: MyText
+  new: MyText
+  ip: MyString

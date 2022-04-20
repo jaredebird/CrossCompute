@@ -1,0 +1,62 @@
+<%= form_with model: [:admin, @member] do |form| %>
+  <% if member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+        <% member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description , :class => "tinymce" %>
+    <%= tinymce %>
+  </div>
+  <div class="field">
+    <% if member.picture.attached? %>
+      <br><img style="max-width:400px;width:100%" src="<%=(url_for(member.picture)) %>" />
+          <br><br>
+          <%= check_box_tag "deletePicture" %>
+          <%= form.label "Remove Picture" %>
+    <br>
+    <% end %>
+    <%= form.label "Choose New Picture" %>
+    <%= form.file_field :picture %>
+  </div>
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.select :order, (1..200), :selected => member.order %>
+  </div>
+
+  <div class="field">
+
+    <%= form.date_select :startDate, { :discard_day => true, :discard_month => true, :discard_year => true }  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medical %>
+    <%= form.check_box :medical %>
+  </div>
+  <div class="field">
+    <%= form.label :dental %>
+    <%= form.check_box :dental %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
