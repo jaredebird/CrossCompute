@@ -7,7 +7,7 @@ default: &default
 
 development:
   <<: *default
-  database: jaredebird
+  database: CrossCompute
   username: postgres
   password: "bird0072"
 
