@@ -13,7 +13,7 @@ amazon:
  secret_access_key: <%= ENV['S3_ACCESS_KEY'] %>
  access_key_id: <%= ENV['S3_KEY_ID'] %>
  region: us-east-1
- bucket: jaredebird
+ bucket: crosscomputellc
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
